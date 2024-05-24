@@ -1,10 +1,11 @@
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher,F
 import asyncio 
 from handler import start_handler
-from callback_handler import vibor
+from callback_handler import vibor,keybord_handler,magazin_handler
 from aiogram.filters import Command
+from product import Product
 
-TOKEN = '7187758450:AAHiCMAuAVH4GYD6CkKb8wDj_lEjT5MM3F0'
+TOKEN = '6405185096:AAGtWBpXUpPsooZVyFvsDzQbwtd4jzb2fd4'
 
 async def start():
 
@@ -12,6 +13,8 @@ async def start():
     dp = Dispatcher()
 
     dp.message.register(start_handler, Command(commands='start'))
+    dp.callback_query.register(keybord_handler, F.data == 'Магазин')
+    dp.callback_query.register(magazin_handler, Product.filter())
     dp.callback_query.register(vibor)
 
     try:
