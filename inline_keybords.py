@@ -69,3 +69,4 @@ def get_inline_keybords1():
     ))
     kb.adjust(1,1,1,1,1,1)
     return kb.as_markup()
+ 
